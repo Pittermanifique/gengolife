@@ -2,7 +2,7 @@ import random
 
 
 class Indi:
-    def init(self, id, c, nom):
+    def __init__(self, id, c, nom):
         self.nom=nom
         self.id=id
         self.c=c
@@ -10,12 +10,13 @@ class Indi:
     def affiche(self):
         print(self.tab)
         for i in self.tab:
+            print(str(self.nom))
             print(str(i))
 
 
 
-people=Indi(0, 0, "Robert")
-print(people.affiche())
+people=Indi(0, 1, "Robert")
+people.affiche()
 
-#people2=Indi(0, 3, "Roberta")
-#print(people2.affiche())
+people2=Indi(0, 3, "Roberta")
+people2.affiche()

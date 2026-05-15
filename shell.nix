@@ -18,13 +18,12 @@ pkgs.mkShell {
   shellHook = ''
     export POETRY_VIRTUALENVS_IN_PROJECT=true
 
-    # Fix robuste pour les libs C sur NixOS
     export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath libraries}:$LD_LIBRARY_PATH"
 
-    # Installation et activation
     poetry install
     source .venv/bin/activate
+    pycharm > /dev/null 2>&1 &
 
-    echo "Nix-shell chargé : Zlib et Libstdc++ sont maintenant disponibles."
+    echo "Nix-shell OK"
   '';
 }

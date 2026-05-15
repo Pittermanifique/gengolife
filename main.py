@@ -7,7 +7,7 @@ class Indi:
     def __init__(self, id, c, nom, dadtab, momtab):
         self.nom=nom
         self.papa=str(dadtab)
-        self.mom=str(momtab)
+        self.maman=str(momtab)
         self.id=id
         self.c=c
         randomtab=[[random.randint(0, 1) for j in range(self.c)] for i in range(self.c)]
@@ -23,7 +23,20 @@ class Indi:
 
 
     def update(self):
-        pass
+        lignes = self.tab
+        colones = []
+        colone = []
+
+        for i in range(self.c):
+            for j in range(self.c):
+                colone.append(lignes[j][i])
+
+            colones.append(colone)
+            colone = []
+
+        print(lignes)
+        print(colones)
+
 
     def affiche(self):
         print(self.nom)
@@ -72,6 +85,7 @@ print("\n")
 
 people=Indi(0, c, "Robert",dadtab_robert, momtab_robert)
 people.affiche()
+people.update()
 
 pine_apple=Indi(1, c, "Roberta", dadtab_roberta, momtab_roberta)
 pine_apple.affiche()

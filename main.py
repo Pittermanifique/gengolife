@@ -34,8 +34,33 @@ class Indi:
             colones.append(colone)
             colone = []
 
-        print(lignes)
-        print(colones)
+        new_tab = []
+        new_ligne = []
+        sum_lignes = []
+        sum_colones = []
+
+        for i in lignes:
+            sum_lignes.append(sum(i))
+
+        for i in colones:
+            sum_colones.append(sum(i))
+
+        for i in sum_lignes:
+            for j in sum_colones:
+                if i%2==0 and j%2==0:
+                    new_ligne.append(1)
+                else:
+                    new_ligne.append(0)
+            new_tab.append(new_ligne)
+            new_ligne = []
+
+        self.tab = new_tab
+
+
+
+
+
+
 
 
     def affiche(self):
@@ -84,8 +109,10 @@ for i in momtab_robert:
 print("\n")
 
 people=Indi(0, c, "Robert",dadtab_robert, momtab_robert)
-people.affiche()
-people.update()
+for i in range(10):
+    print(f"Robert gen {i+1}")
+    people.update()
+    people.affiche()
 
 pine_apple=Indi(1, c, "Roberta", dadtab_roberta, momtab_roberta)
 pine_apple.affiche()

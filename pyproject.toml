@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "gengolife"
+version = "0.1.0"
+description = " ... "
+authors = [" ... "]
+package-mode = false
+
+[tool.poetry.dependencies]
+# Ici, tu listes tes bibliothèques pour que le code fonctionne
+python = "^3.10"
+pandas = "^2.1.0"
+
+[tool.poetry.group.dev.dependencies]
+# Ici, tu mets les outils qui servent UNIQUEMENT au développement
+# (Ils ne seront pas installés en production)
+pytest = "^7.4.0"
+black = "^23.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,62 @@
+# --- Python ---
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# --- Environnements Virtuels ---
+# Dossiers créés par venv, virtualenv, conda, etc.
+.venv/
+venv/
+ENV/
+env/
+bin/
+lib/
+include/
+share/
+pyvenv.cfg
+
+# --- Distribution / Paquets ---
+# Fichiers générés par le build de ton projet
+dist/
+build/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+
+# --- Tests / Couverture ---
+# Fichiers générés par pytest, tox, etc.
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+
+# --- Notebooks ---
+# Cache de Jupyter Notebook
+.ipynb_checkpoints
+
+# --- Configuration de l'IDE ---
+# VS Code
+.vscode/
+# PyCharm / IntelliJ
+.idea/
+
+# --- Variables d'Environnement ---
+# NE JAMAIS commit tes clés API ou secrets
+.env
+.venv
+env.local
+.direnv/
+
+# --- Divers ---
+# Fichiers système
+.DS_Store
+Thumbs.db

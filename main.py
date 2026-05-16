@@ -26,7 +26,7 @@ class Indi:
         lignes = self.tab
         colones = []
         colone = []
-
+        a=0
         for i in range(self.c):
             for j in range(self.c):
                 colone.append(lignes[j][i])
@@ -44,17 +44,18 @@ class Indi:
 
         for i in colones:
             sum_colones.append(sum(i))
-
+        
         for i in sum_lignes:
             for j in sum_colones:
                 if i%2==0 and j%2==0:
                     new_ligne.append(1)
                 else:
+                    a+=1
                     new_ligne.append(0)
             new_tab.append(new_ligne)
             new_ligne = []
-
         self.tab = new_tab
+        return a # on pourrait utiliser le nombre de fois qu'on rentre dans la boucle du else pour définir un etat, un relation ou un autre truc. Parce que pârfois on ne rentre jamais dedans.
 
 
 
@@ -75,7 +76,6 @@ class Indi:
     # essai d'un bidule pour avoir en mémoire les parents d'un gugs, foireux. Faut voir comment prendre les noms des générations antérieures à l'individu
     def parents(self):
         print(self.papa + self.maman)
-
 
 
 c = 6
@@ -119,7 +119,10 @@ pine_apple.affiche()
 
 apple=Indi(1, c, "Robierto", people.adn(), pine_apple.adn())
 apple.affiche()
-
+for i in range(10):
+    print(f"Robierto gen {i+1}")
+    apple.update()
+    apple.affiche()
 
 
 #people2=Indi(0, 3, "Roberta")

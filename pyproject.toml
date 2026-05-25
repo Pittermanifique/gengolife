@@ -9,6 +9,7 @@ package-mode = false
 # Ici, tu listes tes bibliothèques pour que le code fonctionne
 python = "^3.10"
 pandas = "^2.1.0"
+pygame = "^2.6.1"
 
 [tool.poetry.group.dev.dependencies]
 # Ici, tu mets les outils qui servent UNIQUEMENT au développement

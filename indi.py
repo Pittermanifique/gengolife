@@ -74,23 +74,26 @@ class Indi:
         for i in range(self.c):
             for j in range(self.c):
                 neighbor = 0
-                for x in range(-1, 2):
-                    for y in range(-1, 2):
-                        if x == 0 and y == 0:
-                            continue
+                random_mutation = random.randint(0,100)
+                if random_mutation > self.age*10:
+                    for x in range(-1, 2):
+                        for y in range(-1, 2):
+                            if x == 0 and y == 0:
+                                continue
 
-                        ni = (i + x) % self.c
-                        nj = (j + y) % self.c
+                            ni = (i + x) % self.c
+                            nj = (j + y) % self.c
 
-                        if self.tab[ni][nj] == 1:
-                            neighbor += 1
-
-                if self.tab[i][j] == 1:
-                    if neighbor < 2 or neighbor > 3:
-                        new_tab[i][j] = 0
+                            if self.tab[ni][nj] == 1:
+                                neighbor += 1
+                    if self.tab[i][j] == 1:
+                        if neighbor < 2 or neighbor > 3:
+                            new_tab[i][j] = 0
+                    else:
+                        if neighbor == 3:
+                            new_tab[i][j] = 1
                 else:
-                    if neighbor == 3:
-                        new_tab[i][j] = 1
+                    new_tab[i][j] = 0
 
         self.tab = new_tab
         return new_tab

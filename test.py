@@ -3,8 +3,8 @@ import sys
 import pygame
 import random  # Assure-toi que random est bien importé si non inclus dans 'indi'
 
-c = 40
-taille_case = 20  # Augmenté pour que la fenêtre soit visible (6 * 20 = 120x120)
+c = 60
+taille_case = 10  # Augmenté pour que la fenêtre soit visible (6 * 20 = 120x120)
 
 pygame.init()
 screen = pygame.display.set_mode((c * taille_case, c * taille_case))
@@ -23,6 +23,7 @@ for i in momtab_robert:
     print(str(i))
 
 people = Indi(0, c, "Robert", dadtab_robert, momtab_robert)
+tab = people.adn()
 
 running = True
 while running:
@@ -34,18 +35,17 @@ while running:
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
-            screen.fill((255, 255, 255))
-
             tab = people.update_life_game()
-            for i in range(len(tab)):
-                for j in range(len(tab[i])):
-                    if tab[i][j] == 1:
-                        # CORRECTION ICI : position (i*taille, j*taille) et taille fixe (taille_case, taille_case)
-                        pygame.draw.rect(
-                            screen,
-                            (0, 255, 0),
-                            (i * taille_case, j * taille_case, taille_case, taille_case)
-                        )
+
+        screen.fill((255, 255, 255))
+        for i in range(len(tab)):
+            for j in range(len(tab[i])):
+                if tab[i][j] == 1:
+                    pygame.draw.rect(
+                        screen,
+                        (0, 255, 0),
+                        (i * taille_case, j * taille_case, taille_case, taille_case)
+                    )
     pygame.display.flip()
 
 pygame.quit()

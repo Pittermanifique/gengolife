@@ -23,51 +23,6 @@ class Indi:
             else:
                 self.tab.append(randomtab[i])
 
-
-    def update(self):
-        lignes = self.tab
-        colones = []
-        colone = []
-        a=0
-        for i in range(self.c):
-            for j in range(self.c):
-                colone.append(lignes[j][i])
-
-            colones.append(colone)
-            colone = []
-
-        new_tab = []
-        new_ligne = []
-        sum_lignes = []
-        sum_colones = []
-
-        for i in lignes:
-            if sum(i) >= self.c:
-                sum_lignes.append(sum(i))
-            else:
-                sum_lignes.append(self.c - sum(i))
-
-        for i in colones:
-            if sum(i) >= self.c:
-                sum_colones.append(sum(i))
-            else:
-                sum_colones.append(self.c - sum(i))
-        
-        for i in sum_lignes:
-            for j in sum_colones:
-                if i%2 == 0 and j%2 == 0 and self.c/6 < i < self.c/1.5 and self.c/6 < j < self.c/1.5:
-                    new_ligne.append(1)
-                else:
-                    a+=1
-                    new_ligne.append(0)
-            new_tab.append(new_ligne)
-            new_ligne = []
-        self.tab = new_tab
-        self.age += 1
-        return a # on pourrait utiliser le nombre de fois qu'on rentre dans la boucle du else pour définir un etat, un relation ou un autre truc. Parce que pârfois on ne rentre jamais dedans.
-
-    import copy
-
     def update_life_game(self):
         new_tab = copy.deepcopy(self.tab)
 
@@ -75,7 +30,7 @@ class Indi:
             for j in range(self.c):
                 neighbor = 0
                 random_mutation = random.randint(0,100)
-                if random_mutation > self.age*10:
+                if random_mutation > self.age//6:
                     for x in range(-1, 2):
                         for y in range(-1, 2):
                             if x == 0 and y == 0:
@@ -96,6 +51,7 @@ class Indi:
                     new_tab[i][j] = 0
 
         self.tab = new_tab
+        self.age += 1
         return new_tab
 
     def affiche(self):

@@ -5,23 +5,53 @@ from pandas._config import dates
 
 
 class Indi:
-    def __init__(self, id, c, nom, dadtab, momtab):
-        self.nom=nom
-        self.papa=str(dadtab)
-        self.maman=str(momtab)
+    def __init__(self, id, c):
+        self.nom=""
         self.id=id
         self.c=c
         self.age=0
-        randomtab=[[random.randint(0, 1) for j in range(self.c)] for i in range(self.c)]
         self.tab=[]
-        repartion = c/3
-        for i in range(c):
-            if i<repartion:
+        self.ratio = 0.5
+
+    def new_base_indi(self):
+        self.nom = "test"
+        randomtab = [[random.randint(0, 1) for j in range(self.c)] for i in range(self.c)]
+        dadtab = [[random.randint(0, 1) for j in range(self.c)] for i in range(self.c)]
+        momtab = [[random.randint(0, 1) for j in range(self.c)] for i in range(self.c)]
+        repartion = self.c / 3
+        for i in range(self.c):
+            if i < repartion:
                 self.tab.append(dadtab[i])
-            elif repartion < i < repartion*2:
+            elif repartion < i < repartion * 2:
                 self.tab.append(momtab[i])
             else:
                 self.tab.append(randomtab[i])
+        count = 0
+        for i in range(self.c):
+            for j in range(self.c):
+                if self.tab[i][j] == 1:
+                    count += 1
+        self.ratio = count
+
+    def new_indi(self,dad,mom):
+        self.nom = "test"
+        randomtab = [[random.randint(0, 1) for j in range(self.c)] for i in range(self.c)]
+        dadtab = dad.tab
+        momtab = mom.tab
+        repartion = self.c / 3
+        for i in range(self.c):
+            if i < repartion:
+                self.tab.append(dadtab[i])
+            elif repartion < i < repartion * 2:
+                self.tab.append(momtab[i])
+            else:
+                self.tab.append(randomtab[i])
+        count = 0
+        for i in range(self.c):
+            for j in range(self.c):
+                if self.tab[i][j] == 1:
+                    count += 1
+        self.ratio = count
 
     def update_life_game(self):
         new_tab = copy.deepcopy(self.tab)
@@ -52,6 +82,14 @@ class Indi:
 
         self.tab = new_tab
         self.age += 1
+
+        count = 0
+        for i in range(self.c):
+            for j in range(self.c):
+                if self.tab[i][j] == 1:
+                    count += 1
+        self.ratio = count
+
         return new_tab
 
     def affiche(self):
@@ -59,10 +97,3 @@ class Indi:
         for i in self.tab:
             print(str(i))
         print("\n")
-    
-    def adn(self):
-        return self.tab
-    
-    # essai d'un bidule pour avoir en mémoire les parents d'un gugs, foireux. Faut voir comment prendre les noms des générations antérieures à l'individu
-    def parents(self):
-        print(self.papa + self.maman)

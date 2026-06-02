@@ -6,13 +6,13 @@ import copy
 class pop:
     def __init__(self):
         self.individus = []
-        self.liste_modif = []
+        self.liste_interactions = []
         self.gen = 0
 
     def gen_base_pop(self, n_pepoles, c):
         if len(self.individus) == 0:
             for i in range(n_pepoles):
-                new_indi = indi.Indi(i+1,c)
+                new_indi = indi.Indi(i,c)
                 new_indi.new_base_indi()
                 self.individus.append(new_indi)
 

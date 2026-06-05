@@ -1,6 +1,7 @@
 import indi
 import random
 import copy
+from tqdm import tqdm
 
 class Pop:
     def __init__(self,c):
@@ -25,7 +26,7 @@ class Pop:
 
     def update_interactions(self):
         new_individus = copy.deepcopy(self.individus)
-        for i in self.liste_interactions:
+        for i in tqdm(self.liste_interactions):
             id1 = i[0]
             id2 = i[1]
             interaction_type = i[2]
@@ -48,7 +49,7 @@ class Pop:
 
     def update_pop(self):
         self.update_interactions()
-        for i in self.individus:
+        for i in tqdm(self.individus):
             i.update_life_game()
 
     def affiche(self):
@@ -60,7 +61,6 @@ class Pop:
 if __name__ == "__main__":
     population = Pop(16)
     population.gen_base_pop(20000)
-    population.affiche()
 
     for i in range(100000):
         population.new_interactions(0, 1, "same")

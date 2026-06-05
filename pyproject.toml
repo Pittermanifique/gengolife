@@ -10,6 +10,7 @@ package-mode = false
 python = "^3.10"
 pandas = "^2.1.0"
 pygame = "^2.6.1"
+tqdm = "^4.67.3"
 
 [tool.poetry.group.dev.dependencies]
 # Ici, tu mets les outils qui servent UNIQUEMENT au développement

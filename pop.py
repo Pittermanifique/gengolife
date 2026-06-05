@@ -17,12 +17,11 @@ class Pop:
                 self.individus.append(new_indi)
 
     def new_interactions(self,id1,id2,interaction_type):
-        if interaction_type == "same":
+        if interaction_type == "same" or interaction_type == "xor":
             random_col = random.randint(0,self.c-1)
             random_line = random.randint(0,self.c-1)
             interaction = (id1,id2,interaction_type,(random_line,random_col))
             self.liste_interactions.append(interaction)
-            print(interaction)
 
     def update_interactions(self):
         new_individus = copy.deepcopy(self.individus)
@@ -35,8 +34,20 @@ class Pop:
                 target = new_individus[id2]
                 base = self.individus[id1]
                 target.tab[coo[0]][coo[1]] = base.tab[coo[0]][coo[1]]
+            elif interaction_type == "xor":
+                coo = i[3]
+                target = new_individus[id2]
+                base = self.individus[id1]
+                if target.tab[coo[0]][coo[1]] == base.tab[coo[0]][coo[1]]:
+                    target.tab[coo[0]][coo[1]] = 0
+                else:
+                    target.tab[coo[0]][coo[1]] = 1
+
+        self.individus = new_individus
+
 
     def update_pop(self):
+        self.update_interactions()
         for i in self.individus:
             i.update_life_game()
 
@@ -47,13 +58,15 @@ class Pop:
             print("\n")
 
 if __name__ == "__main__":
-    population = Pop(10)
-    population.gen_base_pop(2)
+    population = Pop(16)
+    population.gen_base_pop(20000)
     population.affiche()
 
-    for i in range(10):
+    for i in range(100000):
         population.new_interactions(0, 1, "same")
+    for i in range(100000):
+        population.new_interactions(0, 1, "xor")
 
-    population.update_interactions()
+    population.update_pop()
     population.affiche()
 
